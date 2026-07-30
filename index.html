@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gallery</title>
+
+<style>
+
+body{
+    margin:0;
+    background:white;
+    font-family:Georgia, serif;
+    color:#222;
+}
+
+header{
+    padding:30px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+    letter-spacing:.05em;
+}
+
+header a{
+    color:black;
+    text-decoration:none;
+}
+
+main{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:78vh;
+}
+
+img{
+    max-width:90vw;
+    max-height:75vh;
+    object-fit:contain;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:13px;
+    color:#666;
+}
+
+.nav{
+    position:fixed;
+    top:50%;
+    width:100%;
+    transform:translateY(-50%);
+    display:flex;
+    justify-content:space-between;
+}
+
+button{
+    background:none;
+    border:none;
+    font-size:45px;
+    cursor:pointer;
+    color:#999;
+    padding:20px;
+}
+
+button:hover{
+    color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<main>
+
+<img id="image">
+
+</main>
+
+<div class="nav">
+
+<button onclick="previous()">&#10094;</button>
+
+<button onclick="next()">&#10095;</button>
+
+</div>
+
+<footer id="caption"></footer>
+
+<script>
+
+const artworks=[
+
+{
+image:"images/image1.jpg",
+title:"Untitled, 2024"
+},
+
+{
+image:"images/image2.jpg",
+title:"Untitled, 2024"
+},
+
+{
+image:"images/image3.jpg",
+title:"Untitled, 2025"
+}
+
+];
+
+let current=0;
+
+function show(){
+
+document.getElementById("image").src=artworks[current].image;
+
+document.getElementById("caption").innerHTML=artworks[current].title;
+
+document.getElementById("count").innerHTML=(current+1)+" / "+artworks.length;
+
+}
+
+function next(){
+
+current++;
+
+if(current>=artworks.length){
+
+current=0;
+
+}
+
+show();
+
+}
+
+function previous(){
+
+current--;
+
+if(current<0){
+
+current=artworks.length-1;
+
+}
+
+show();
+
+}
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="ArrowRight") next();
+
+if(e.key==="ArrowLeft") previous();
+
+});
+
+show();
+
+</script>
+
+</body>
+</html>
